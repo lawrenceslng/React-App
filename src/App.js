@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       data: Friends,
       clicked: [],
-      score: 0
+      score: 0,
+      message: "Click to Begin"
     }
     this.handleClick= this.handleClick.bind(this)
   }
@@ -26,7 +27,8 @@ class App extends Component {
       this.setState({
         data: Friends,
       clicked: [],
-      score: 0
+      score: 0,
+      message: "Wrong Guess. Start again!"
       })
     }
     else{
@@ -37,7 +39,8 @@ class App extends Component {
       this.setState({
         data: Friends,
       clicked: this.state.clicked,
-      score: this.state.score+1
+      score: this.state.score+1,
+      message: "Good Guess!"
       })
       
       
@@ -51,10 +54,13 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <span>Score: {this.state.score}</span> 
+          <p>Score: {this.state.score}</p> 
+          <p>{this.state.message}</p>
         </header>
         <div className="flex-container">
+        <div>
         {shuffle(this.state.data).map(datum => <Card id={datum.id} img={datum.image} click={this.handleClick}></Card>)}
+        </div>
         </div>
       </div>
     );
